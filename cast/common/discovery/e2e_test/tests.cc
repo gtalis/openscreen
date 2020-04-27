@@ -36,7 +36,6 @@ constexpr std::chrono::milliseconds kCheckLoopSleepTime =
     std::chrono::milliseconds(100);
 constexpr int kMaxCheckLoopIterations = 25;
 
-}  // namespace
 
 // Publishes new service instances.
 class Publisher : public discovery::DnsSdServicePublisher<ServiceInfo> {
@@ -66,9 +65,9 @@ class Publisher : public discovery::DnsSdServicePublisher<ServiceInfo> {
 };
 
 // Receives incoming services and outputs their results to stdout.
-class Receiver : public discovery::DnsSdServiceWatcher<ServiceInfo> {
+class ServiceReceiver : public discovery::DnsSdServiceWatcher<ServiceInfo> {
  public:
-  explicit Receiver(discovery::DnsSdService* service)
+  explicit ServiceReceiver(discovery::DnsSdService* service)
       : discovery::DnsSdServiceWatcher<ServiceInfo>(
             service,
             kCastV2ServiceId,
@@ -77,7 +76,7 @@ class Receiver : public discovery::DnsSdServiceWatcher<ServiceInfo> {
                 std::vector<std::reference_wrapper<const ServiceInfo>> infos) {
               ProcessResults(std::move(infos));
             }) {
-    OSP_LOG << "Initializing Receiver...";
+    OSP_LOG << "Initializing ServiceReceiver...";
   }
 
   bool IsServiceFound(const ServiceInfo& check_service) {
@@ -161,7 +160,7 @@ class DiscoveryE2ETest : public testing::Test {
     task_runner_->PostTask([this, &config, &done]() {
       dnssd_service_ = discovery::CreateDnsSdService(
           task_runner_, &reporting_client_, config);
-      receiver_ = std::make_unique<Receiver>(dnssd_service_.get());
+      receiver_ = std::make_unique<ServiceReceiver>(dnssd_service_.get());
       publisher_ = std::make_unique<Publisher>(dnssd_service_.get());
       done = true;
     });
@@ -264,7 +263,7 @@ class DiscoveryE2ETest : public testing::Test {
   TaskRunner* task_runner_;
   FailOnErrorReporting reporting_client_;
   SerialDeletePtr<discovery::DnsSdService> dnssd_service_;
-  std::unique_ptr<Receiver> receiver_;
+  std::unique_ptr<ServiceReceiver> receiver_;
   std::unique_ptr<Publisher> publisher_;
 
  private:
@@ -578,5 +577,6 @@ TEST_F(DiscoveryE2ETest, ValidateRefreshFlow) {
   WaitUntilSeen(true, &found);
 }
 
+}  // namespace
 }  // namespace cast
 }  // namespace openscreen

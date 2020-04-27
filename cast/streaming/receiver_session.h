@@ -23,7 +23,7 @@ class CastSocket;
 class Environment;
 class Receiver;
 class VirtualConnectionRouter;
-class VirtualConnection;
+struct VirtualConnection;
 
 class ReceiverSession final : public MessagePort::Client {
  public:
