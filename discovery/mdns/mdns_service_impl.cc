@@ -93,6 +93,8 @@ MdnsServiceImpl::MdnsServiceImpl(
   if (socket_v4_.get()) {
     socket_v4_->Bind();
 
+    // This configuration must happen after the socket is bound for
+    // compatibility with chromium.
     socket_v4_->SetMulticastOutboundInterface(network_interface);
     socket_v4_->JoinMulticastGroup(kDefaultMulticastGroupIPv4,
                                    network_interface);
@@ -102,6 +104,8 @@ MdnsServiceImpl::MdnsServiceImpl(
   if (socket_v6_.get()) {
     socket_v6_->Bind();
 
+    // This configuration must happen after the socket is bound for
+    // compatibility with chromium.
     socket_v6_->SetMulticastOutboundInterface(network_interface);
     socket_v6_->JoinMulticastGroup(kDefaultMulticastGroupIPv6,
                                    network_interface);
