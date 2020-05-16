@@ -16,10 +16,6 @@
 namespace openscreen {
 namespace cast {
 
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 SenderPacketRouter::SenderPacketRouter(Environment* environment,
                                        int max_burst_bitrate)
     : SenderPacketRouter(

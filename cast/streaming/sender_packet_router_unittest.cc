@@ -13,9 +13,6 @@
 #include "util/big_endian.h"
 #include "util/osp_logging.h"
 
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 using testing::_;
 using testing::Invoke;
 using testing::Mock;

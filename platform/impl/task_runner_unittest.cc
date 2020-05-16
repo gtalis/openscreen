@@ -4,6 +4,8 @@
 
 #include "platform/impl/task_runner.h"
 
+#include <unistd.h>
+
 #include <atomic>
 #include <thread>  // NOLINT
 
@@ -16,7 +18,6 @@ namespace openscreen {
 namespace {
 
 using namespace ::testing;
-using std::chrono::milliseconds;
 using ::testing::_;
 
 const auto kTaskRunnerSleepTime = milliseconds(1);
@@ -38,7 +39,7 @@ class FakeTaskWaiter final : public TaskRunnerImpl::TaskWaiter {
     Clock::time_point start = now_function_();
     waiting_.store(true);
     while (!has_event_.load() && (now_function_() - start) < timeout) {
-      ;
+      EXPECT_EQ(usleep(100 /* microseconds */), 0);
     }
     waiting_.store(false);
     has_event_.store(false);

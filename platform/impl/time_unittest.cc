@@ -8,8 +8,6 @@
 
 #include "gtest/gtest.h"
 
-using std::chrono::seconds;
-
 namespace openscreen {
 
 #if __cplusplus < 202000L

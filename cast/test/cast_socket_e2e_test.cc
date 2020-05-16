@@ -34,15 +34,14 @@
 namespace openscreen {
 namespace cast {
 
-using std::chrono::milliseconds;
-
 constexpr auto kCertificateDuration = std::chrono::hours(24);
 
 class SenderSocketsClient final
     : public SenderSocketFactory::Client,
       public VirtualConnectionRouter::SocketErrorHandler {
  public:
-  SenderSocketsClient(VirtualConnectionRouter* router) : router_(router) {}
+  explicit SenderSocketsClient(VirtualConnectionRouter* router)
+      : router_(router) {}
   ~SenderSocketsClient() = default;
 
   CastSocket* socket() const { return socket_; }
@@ -115,7 +114,7 @@ class ReceiverSocketsClient final
 class CastSocketE2ETest : public ::testing::Test {
  public:
   void SetUp() override {
-    PlatformClientPosix::Create(milliseconds{10}, Clock::duration{0});
+    PlatformClientPosix::Create(milliseconds{10}, milliseconds{0});
     task_runner_ = PlatformClientPosix::GetInstance()->GetTaskRunner();
 
     sender_router_ = MakeSerialDelete<VirtualConnectionRouter>(

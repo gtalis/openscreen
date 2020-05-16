@@ -14,10 +14,6 @@
 namespace openscreen {
 namespace cast {
 
-using std::chrono::duration_cast;
-using std::chrono::microseconds;
-using std::chrono::milliseconds;
-
 using openscreen::operator<<;  // For std::chrono::duration logging.
 
 Sender::Sender(Environment* environment,
@@ -412,8 +408,8 @@ void Sender::OnReceiverIsMissingPackets(std::vector<PacketNack> nacks) {
     if (!slot) {
       // TODO(miu): Add tracing event here to record this.
       for (++nack_it; nack_it != nacks.end() && nack_it->frame_id == frame_id;
-           ++nack_it)
-        ;
+           ++nack_it) {
+      }
       continue;
     }
 

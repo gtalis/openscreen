@@ -10,11 +10,24 @@
 
 namespace openscreen {
 
+// Common time types used throughout Open Screen. We should always use these
+// types for time, if there is ever a namespace collision we have done something
+// horribly wrong.
+using std::chrono::duration_cast;
+using std::chrono::hours;
+using std::chrono::microseconds;
+using std::chrono::milliseconds;
+using std::chrono::nanoseconds;
+using std::chrono::seconds;
+
 // The Open Screen monotonic clock traits description, providing all the C++14
 // requirements of a TrivialClock, for use with STL <chrono>.
 class TrivialClockTraits {
  public:
   // TrivialClock named requirements: std::chrono templates can/may use these.
+  // NOTE: unless you are specifically integrating with the clock, you probably
+  // don't want to use these types, and instead should reference the std::chrono
+  // types directly.
   using duration = std::chrono::microseconds;
   using rep = duration::rep;
   using period = duration::period;

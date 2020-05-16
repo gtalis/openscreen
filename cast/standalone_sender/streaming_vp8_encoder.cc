@@ -20,10 +20,6 @@
 namespace openscreen {
 namespace cast {
 
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 // TODO(https://crbug.com/openscreen/123): Fix the declarations and then remove
 // this:
 using openscreen::operator<<;  // For std::chrono::duration pretty-printing.

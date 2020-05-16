@@ -41,7 +41,7 @@ constexpr int kMaxCheckLoopIterations = 25;
 // Publishes new service instances.
 class Publisher : public discovery::DnsSdServicePublisher<ServiceInfo> {
  public:
-  Publisher(discovery::DnsSdService* service)
+  explicit Publisher(discovery::DnsSdService* service)
       : DnsSdServicePublisher<ServiceInfo>(service,
                                            kCastV2ServiceId,
                                            ServiceInfoToDnsSdInstance) {
@@ -68,7 +68,7 @@ class Publisher : public discovery::DnsSdServicePublisher<ServiceInfo> {
 // Receives incoming services and outputs their results to stdout.
 class Receiver : public discovery::DnsSdServiceWatcher<ServiceInfo> {
  public:
-  Receiver(discovery::DnsSdService* service)
+  explicit Receiver(discovery::DnsSdService* service)
       : discovery::DnsSdServiceWatcher<ServiceInfo>(
             service,
             kCastV2ServiceId,
@@ -135,7 +135,7 @@ class DiscoveryE2ETest : public testing::Test {
     // Sleep to let any packets clear off the network before further tests.
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-    PlatformClientPosix::Create(Clock::duration{50}, Clock::duration{50});
+    PlatformClientPosix::Create(milliseconds{50}, milliseconds{50});
     task_runner_ = PlatformClientPosix::GetInstance()->GetTaskRunner();
   }
 

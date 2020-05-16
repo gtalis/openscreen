@@ -6,8 +6,6 @@
 
 #include "util/osp_logging.h"
 
-using std::chrono::duration_cast;
-
 namespace openscreen {
 namespace cast {
 

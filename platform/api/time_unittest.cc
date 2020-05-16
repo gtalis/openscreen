@@ -8,9 +8,6 @@
 
 #include "gtest/gtest.h"
 
-using std::chrono::microseconds;
-using std::chrono::milliseconds;
-
 namespace openscreen {
 namespace {
 

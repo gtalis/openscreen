@@ -37,10 +37,6 @@ namespace openscreen {
 namespace cast {
 namespace {
 
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 ////////////////////////////////////////////////////////////////////////////////
 // Sender Configuration
 //
@@ -444,7 +440,7 @@ int StandaloneSenderMain(int argc, char* argv[]) {
 #if defined(CAST_STANDALONE_SENDER_HAVE_EXTERNAL_LIBS)
 
   auto* const task_runner = new TaskRunnerImpl(&Clock::now);
-  PlatformClientPosix::Create(Clock::duration{50}, Clock::duration{50},
+  PlatformClientPosix::Create(milliseconds{50}, milliseconds{50},
                               std::unique_ptr<TaskRunnerImpl>(task_runner));
 
   {

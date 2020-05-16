@@ -17,9 +17,6 @@
 #include "platform/test/fake_task_runner.h"
 #include "util/osp_logging.h"
 
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 namespace openscreen {
 namespace osp {
 

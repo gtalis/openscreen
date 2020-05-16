@@ -10,8 +10,6 @@
 #include "cast/streaming/encoded_frame.h"
 #include "util/osp_logging.h"
 
-using std::chrono::microseconds;
-
 namespace openscreen {
 namespace cast {
 

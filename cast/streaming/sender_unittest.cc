@@ -38,12 +38,6 @@
 #include "util/alarm.h"
 #include "util/yet_another_bit_vector.h"
 
-using std::chrono::duration_cast;
-using std::chrono::microseconds;
-using std::chrono::milliseconds;
-using std::chrono::nanoseconds;
-using std::chrono::seconds;
-
 using testing::_;
 using testing::AtLeast;
 using testing::Invoke;

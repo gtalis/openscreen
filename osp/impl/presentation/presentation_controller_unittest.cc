@@ -21,7 +21,6 @@
 namespace openscreen {
 namespace osp {
 
-using std::chrono::seconds;
 using ::testing::_;
 using ::testing::Invoke;
 using ::testing::NiceMock;

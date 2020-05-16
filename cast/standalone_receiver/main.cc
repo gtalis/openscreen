@@ -173,7 +173,7 @@ int RunStandaloneReceiver(int argc, char* argv[]) {
                          : openscreen::LogLevel::kInfo);
 
   auto* const task_runner = new TaskRunnerImpl(&Clock::now);
-  PlatformClientPosix::Create(Clock::duration{50}, Clock::duration{50},
+  PlatformClientPosix::Create(milliseconds{50}, milliseconds{50},
                               std::unique_ptr<TaskRunnerImpl>(task_runner));
 
   auto discovery_state = StartDiscovery(task_runner, interface_info);

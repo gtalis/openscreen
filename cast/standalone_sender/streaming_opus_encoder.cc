@@ -12,10 +12,6 @@
 namespace openscreen {
 namespace cast {
 
-using std::chrono::duration_cast;
-using std::chrono::microseconds;
-using std::chrono::seconds;
-
 using openscreen::operator<<;  // To pretty-print chrono values.
 
 namespace {

@@ -37,11 +37,6 @@
 #include "platform/test/fake_task_runner.h"
 #include "util/osp_logging.h"
 
-using std::chrono::duration_cast;
-using std::chrono::microseconds;
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 using testing::_;
 using testing::AtLeast;
 using testing::Gt;

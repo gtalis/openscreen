@@ -13,10 +13,6 @@
 #include "util/osp_logging.h"
 #include "util/trace_logging.h"
 
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 namespace openscreen {
 namespace cast {
 

@@ -6,10 +6,6 @@
 
 #include "gtest/gtest.h"
 
-using std::chrono::duration_cast;
-using std::chrono::microseconds;
-using std::chrono::milliseconds;
-
 namespace openscreen {
 namespace cast {
 

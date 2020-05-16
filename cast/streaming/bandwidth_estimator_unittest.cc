@@ -15,10 +15,6 @@ namespace openscreen {
 namespace cast {
 namespace {
 
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::seconds;
-
 using openscreen::operator<<;  // For std::chrono::duration gtest pretty-print.
 
 // BandwidthEstimator configuration common to all tests.

@@ -9,10 +9,7 @@
 
 #include "util/osp_logging.h"
 
-using std::chrono::duration_cast;
 using std::chrono::high_resolution_clock;
-using std::chrono::hours;
-using std::chrono::seconds;
 using std::chrono::steady_clock;
 using std::chrono::system_clock;
 
