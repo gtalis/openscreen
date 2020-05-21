@@ -330,7 +330,7 @@ std::ostream& operator<<(std::ostream& out, const IPEndpoint& endpoint) {
 
 std::string IPEndpoint::ToString() const {
   std::ostringstream name;
-  name << this;
+  name << *this;
   return name.str();
 }
 
