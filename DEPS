@@ -51,6 +51,12 @@ deps = {
     'condition': 'not build_with_chromium',
   },
 
+  'third_party/libprotobuf-mutator/src': {
+    'url': Var('chromium_git') +
+      '/external/github.com/google/libprotobuf-mutator.git' + '@' '439e81f8f4847ec6e2bf11b3aa634a5d8485633d',
+    'condition': 'not build_with_chromium',
+  },
+
   'third_party/zlib/src': {
     'url': Var('github') +
       '/madler/zlib.git' +
