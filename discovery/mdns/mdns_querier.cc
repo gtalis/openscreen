@@ -4,6 +4,8 @@
 
 #include "discovery/mdns/mdns_querier.h"
 
+#include <memory>
+#include <utility>
 #include <vector>
 
 #include "discovery/common/config.h"
@@ -528,16 +530,12 @@ void MdnsQuerier::ProcessUniqueRecord(const MdnsRecord& record,
     if (will_exist) {
       ProcessCallbacks(record, RecordChangedEvent::kCreated);
     }
-  }
-
-  // There is exactly one tracker associated with this key. This is the expected
-  // case when a record matching this one has already been seen.
-  else if (num_records_for_key == size_t{1}) {
+  } else if (num_records_for_key == size_t{1}) {
+    // There is exactly one tracker associated with this key. This is the
+    // expected case when a record matching this one has already been seen.
     ProcessSinglyTrackedUniqueRecord(record, trackers[0]);
-  }
-
-  // Multiple records with the same key.
-  else {
+  } else {
+    // Multiple records with the same key.
     ProcessMultiTrackedUniqueRecord(record, dns_type);
   }
 }

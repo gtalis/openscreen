@@ -4,6 +4,7 @@
 
 #include "discovery/mdns/mdns_responder.h"
 
+#include <string>
 #include <utility>
 
 #include "discovery/common/config.h"
@@ -185,14 +186,12 @@ void ApplyQueryResults(MdnsMessage* message,
                              DnsType::kAAAA, clazz, target == domain);
       }
     }
-  }
-
-  // Per RFC 6763 section 12.2, when querying for an SRV record, all address
-  // records of type A and AAAA should be added to the additional records
-  // section. Per RFC 6762 section 6.1, if these records are not present and
-  // their name and class match that which is being queried for, a negative
-  // response NSEC record may be added to show their non-existence.
-  else if (type == DnsType::kSRV) {
+  } else if (type == DnsType::kSRV) {
+    // Per RFC 6763 section 12.2, when querying for an SRV record, all address
+    // records of type A and AAAA should be added to the additional records
+    // section. Per RFC 6762 section 6.1, if these records are not present and
+    // their name and class match that which is being queried for, a negative
+    // response NSEC record may be added to show their non-existence.
     for (const auto& srv_record : message->answers()) {
       OSP_DCHECK(srv_record.dns_type() == DnsType::kSRV);
 
@@ -203,13 +202,11 @@ void ApplyQueryResults(MdnsMessage* message,
       AddAdditionalRecords(message, record_handler, target, known_answers,
                            DnsType::kAAAA, clazz, target == domain);
     }
-  }
-
-  // Per RFC 6762 section 6.2, when querying for an address record of type A or
-  // AAAA, the record of the opposite type should be added to the additional
-  // records section if present. Else, a negative response NSEC record should be
-  // added to show its non-existence.
-  else if (type == DnsType::kA) {
+  } else if (type == DnsType::kA) {
+    // Per RFC 6762 section 6.2, when querying for an address record of type A
+    // or AAAA, the record of the opposite type should be added to the
+    // additional records section if present. Else, a negative response NSEC
+    // record should be added to show its non-existence.
     AddAdditionalRecords(message, record_handler, domain, known_answers,
                          DnsType::kAAAA, clazz, true);
   } else if (type == DnsType::kAAAA) {

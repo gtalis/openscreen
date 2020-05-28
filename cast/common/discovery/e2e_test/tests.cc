@@ -40,7 +40,7 @@ constexpr int kMaxCheckLoopIterations = 25;
 // Publishes new service instances.
 class Publisher : public discovery::DnsSdServicePublisher<ServiceInfo> {
  public:
-  explicit Publisher(discovery::DnsSdService* service)
+  explicit Publisher(discovery::DnsSdService* service)  // NOLINT
       : DnsSdServicePublisher<ServiceInfo>(service,
                                            kCastV2ServiceId,
                                            ServiceInfoToDnsSdInstance) {
@@ -67,7 +67,7 @@ class Publisher : public discovery::DnsSdServicePublisher<ServiceInfo> {
 // Receives incoming services and outputs their results to stdout.
 class ServiceReceiver : public discovery::DnsSdServiceWatcher<ServiceInfo> {
  public:
-  explicit ServiceReceiver(discovery::DnsSdService* service)
+  explicit ServiceReceiver(discovery::DnsSdService* service)  // NOLINT
       : discovery::DnsSdServiceWatcher<ServiceInfo>(
             service,
             kCastV2ServiceId,

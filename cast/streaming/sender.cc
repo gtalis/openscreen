@@ -413,6 +413,7 @@ void Sender::OnReceiverIsMissingPackets(std::vector<PacketNack> nacks) {
       continue;
     }
 
+    // NOLINTNEXTLINE
     latest_expected_frame_id_ = std::max(latest_expected_frame_id_, frame_id);
 
     const auto HandleIndividualNack = [&](FramePacketId packet_id) {

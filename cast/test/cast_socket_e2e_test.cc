@@ -40,7 +40,7 @@ class SenderSocketsClient final
     : public SenderSocketFactory::Client,
       public VirtualConnectionRouter::SocketErrorHandler {
  public:
-  explicit SenderSocketsClient(VirtualConnectionRouter* router)
+  explicit SenderSocketsClient(VirtualConnectionRouter* router)  // NOLINT
       : router_(router) {}
   ~SenderSocketsClient() = default;
 
